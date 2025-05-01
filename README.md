@@ -56,3 +56,23 @@ To release a new version **just update the `package.json` version and push**.
 
 To enable the workflow go to your fork of this repository on GitHub then navigate to:
 `Settings` > `Actions` > `Workflow permissions`, select `Read and write permissions`.
+
+# Copy Direct to Container
+
+-   https://willwill96.github.io/the-ui-dawg-static-site/en/keycloakify/
+
+```bash
+
+# copy from host to container
+docker cp dist_keycloak/keycloak-theme-for-kc-all-other-versions.jar keycloak:/opt/keycloak/providers
+
+# go to the keycloak container
+docker exec -it keycloak /bin/bash
+cd /opt/keycloak/providers/
+
+# After copy
+/opt/keycloak/bin/kc.sh build
+
+# Restart the container
+docker restart keycloak
+```
